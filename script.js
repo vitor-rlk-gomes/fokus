@@ -14,6 +14,32 @@ const musica = new Audio('./sons/Work-Rihanna.mp3')
 const audioPlay = new Audio('./sons/play.wav');
 const audioPausa = new Audio('./sons/pause.mp3');
 const audioTempoFinalizado = new Audio('./sons/beep.mp3')
+const app_Add_Music = document.querySelector('#app_Add_Music')
+
+function adicionarMusica() {
+    if(!musica.paused) {
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.accept = 'audio/*'
+        input.addEventListener('change', function() {
+            const file = this.files[0]
+            if (file) {
+                const reader = new FileReader()
+                reader.onload = function(e) {
+                    musica.src = e.target.result
+                    musica.play()
+                }
+                reader.readAsDataURL(file)
+            }
+        })
+        input.click()
+    }
+    else{
+        return
+    }
+}
+
+app_Add_Music.addEventListener('click', adicionarMusica)
 
 let tempoDecorridoEmSegundos = 1800
 let intervaloId = null
