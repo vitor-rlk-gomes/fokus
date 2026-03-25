@@ -19,25 +19,17 @@ const audioTempoFinalizado = new Audio("./sons/beep.mp3");
 const app_Add_Music = document.querySelector("#app_Add_Music");
 const musicFileInput = document.querySelector("#music-file-input");
 
+let objectUrl = null;
+
 musicFileInput.addEventListener("change", function () {
   const file = this.files[0];
   if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      musica.src = e.target.result;
-      if (!musica.paused) musica.play();
-    };
-    reader.readAsDataURL(file);
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = URL.createObjectURL(file);
+    musica.src = objectUrl;
+    if (!musica.paused) musica.play();
   }
 });
-
-function adicionarMusica() {
-  if (!musica.paused) {
-    musicFileInput.click();
-  }
-}
-
-app_Add_Music.addEventListener("click", adicionarMusica);
 
 let tempoDecorridoEmSegundos = 1800;
 let intervaloId = null;
