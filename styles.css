@@ -78,6 +78,10 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
+#app_Add_Music{
+    margin: 0 5px;
+}
+
 .app__card {
     border-radius: 3.2rem;
     border: 0.2rem solid var(--azul-royal);
