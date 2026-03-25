@@ -95,7 +95,13 @@
               type="file"
               id="music-file-input"
               accept="audio/*"
-              style="display: none"
+              style="
+                position: absolute;
+                width: 0;
+                height: 0;
+                opacity: 0;
+                overflow: hidden;
+              "
             />
           </ul>
           <div class="app__card-primary-button-wrapper">
